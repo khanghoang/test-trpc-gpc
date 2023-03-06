@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  upbeat_db:
+    image: postgres:14.2
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5411:5432" # expose pg on port 5632 to not collide with pg from elswhere
+
+volumes:
+  db-data:
+    driver: local
+
