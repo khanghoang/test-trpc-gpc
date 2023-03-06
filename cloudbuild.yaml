@@ -25,4 +25,4 @@ images:
 availableSecrets:
   secretManager:
   - versionName: projects/103778053512/secrets/DATABASE_URL/versions/latest
-    env: 'DATABASE_URL'
+    env: DATABASE_URL
