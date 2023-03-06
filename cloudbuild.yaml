@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/motion-grafic-353506/github.com/khanghoang/test-trpc-gpc:$COMMIT_SHA', '--build-arg DATABASE=$$DATABASE_URL', '.']
+  args: ['build', '-t', 'gcr.io/motion-grafic-353506/github.com/khanghoang/test-trpc-gpc:$COMMIT_SHA', '--build-arg', 'DATABASE=$$DATABASE_URL', '.']
 secretEnv: ['DATABASE_URL']
 availableSecrets:
   secretManager:
