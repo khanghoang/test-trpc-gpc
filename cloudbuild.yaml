@@ -1,7 +1,8 @@
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/motion-grafic-353506/github.com/khanghoang/test-trpc-gpc:$COMMIT_SHA', '--build-arg', 'DATABASE=$$DATABASE_URL', '.']
+  entrypoint: 'bash'
+  args: ['-c','build -t gcr.io/motion-grafic-353506/github.com/khanghoang/test-trpc-gpc:$COMMIT_SHA --build-arg DATABASE=$$DATABASE_URL .']
   secretEnv: ['DATABASE_URL']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
