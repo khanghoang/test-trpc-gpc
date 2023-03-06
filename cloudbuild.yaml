@@ -1,8 +1,25 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/motion-grafic-353506/github.com/khanghoang/test-trpc-gpc:$COMMIT_SHA', '--build-arg', 'DATABASE=$$DATABASE_URL', '.']
-secretEnv: ['DATABASE_URL']
-availableSecrets:
-  secretManager:
-  - versionName: projects/103778053512/secrets/DATABASE_URL/versions/latest
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/motion-grafic-353506/github.com/khanghoang/test-trpc-gpc:$COMMIT_SHA', '--build-arg', 'DATABASE=$$DATABASE_URL', '.']
+      # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/test-trpc:$COMMIT_SHA']
+      # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+  - 'deploy'
+  - 'test-trpc'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/test-trpc:$COMMIT_SHA'
+  - '--region'
+  - 'us-central1'
+    images:
+      - 'gcr.io/$PROJECT_ID/test-trpc:$COMMIT_SHA'
+    secretEnv: ['DATABASE_URL']
+    availableSecrets:
+      secretManager:
+        - versionName: projects/103778053512/secrets/DATABASE_URL/versions/latest
     env: 'DATABASE_URL'
