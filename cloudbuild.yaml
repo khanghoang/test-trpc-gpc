@@ -1,0 +1,8 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/motion-grafic-353506/github.com/khanghoang/test-trpc-gpc:$COMMIT_SHA', '.']
+secretEnv: ['DATABASE_URL']
+availableSecrets:
+  secretManager:
+  - versionName: projects/103778053512/secrets/DATABASE_URL/versions/latest
+    env: 'DATABASE_URL'
