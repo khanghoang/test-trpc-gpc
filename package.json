@@ -11,7 +11,7 @@
     "dx:prisma-studio": "pnpm prisma-studio",
     "dx": "run-p dx:* --print-label",
     "dev": "pnpm dx:next",
-    "prebuild": "run-s generate migrate",
+    "prebuild": "run-s generate",
     "build": "next build",
     "start": "next start",
     "lint": "eslint --ext \".js,.ts,.tsx\" --report-unused-disable-directives --report-unused-disable-directives src",
