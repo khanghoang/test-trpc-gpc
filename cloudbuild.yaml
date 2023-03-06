@@ -21,5 +21,5 @@ steps:
     - 'gcr.io/$PROJECT_ID/test-trpc:$COMMIT_SHA'
 availableSecrets:
   secretManager:
-    - versionName: projects/103778053512/secrets/DATABASE_URL/versions/latest
-    env: 'DATABASE_URL'
+  - versionName: projects/103778053512/secrets/DATABASE_URL/versions/latest
+  env: 'DATABASE_URL'
