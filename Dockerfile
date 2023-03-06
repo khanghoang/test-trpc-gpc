@@ -32,6 +32,7 @@ ENV NODE_ENV production
 ENV DATABASE_URL=$DATABASE
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
+RUN echo "DATABASE_URL = $DATABASE_URL"
 
 RUN yarn build
 
